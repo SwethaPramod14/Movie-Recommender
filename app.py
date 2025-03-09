@@ -2,6 +2,8 @@ import streamlit as st
 import pickle
 import pandas as pd
 import requests
+import os
+import gdown
 
 
 def fetch_poster(movie_id):
@@ -31,7 +33,22 @@ def recommend(movie):
 movies_dict =pickle.load(open('movie_dict.pkl','rb'))
 movies = pd.DataFrame(movies_dict)
 
-similarity = pickle.load(open('similarity.pkl','rb'))
+#similarity = pickle.load(open('similarity.pkl','rb'))
+
+# Define file path
+file_path = "similarity.pkl"
+
+# Google Drive file ID (Replace this with your actual file ID)
+file_id = "1Sv5AxB_nGWSMEDjgm6xVTyBy_aFD_NJa"
+
+# Check if file exists, if not, download it
+if not os.path.exists(file_path):
+    st.write("Downloading similarity.pkl from Google Drive...")
+    gdown.download(f"https://drive.google.com/uc?id={file_id}", file_path, quiet=False)
+
+# Load the file
+similarity = pickle.load(open(file_path, "rb"))
+
 
 # Add a background image slideshow using CSS
 page_bg_img = '''
