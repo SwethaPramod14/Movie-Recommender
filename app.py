@@ -43,12 +43,12 @@ file_id = "1Sv5AxB_nGWSMEDjgm6xVTyBy_aFD_NJa"
 
 # Check if file exists, if not, download it
 if not os.path.exists(file_path):
-    st.write("Downloading similarity.pkl from Google Drive...")
+    print("Downloading similarity.pkl from Google Drive...")
     gdown.download(f"https://drive.google.com/uc?id={file_id}", file_path, quiet=False)
 
     # Check if the file exists after download
     if os.path.exists(file_path):
-        st.write("Download complete. Loading similarity.pkl...")
+        print("Download complete. Loading similarity.pkl...")
     else:
         st.write("Error: similarity.pkl download failed!")
 
