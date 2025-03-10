@@ -46,6 +46,12 @@ if not os.path.exists(file_path):
     st.write("Downloading similarity.pkl from Google Drive...")
     gdown.download(f"https://drive.google.com/uc?id={file_id}", file_path, quiet=False)
 
+    # Check if the file exists after download
+    if os.path.exists(file_path):
+        st.write("Download complete. Loading similarity.pkl...")
+    else:
+        st.write("Error: similarity.pkl download failed!")
+
 # Load the file
 similarity = pickle.load(open(file_path, "rb"))
 
